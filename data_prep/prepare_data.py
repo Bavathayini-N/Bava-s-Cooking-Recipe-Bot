@@ -21,17 +21,17 @@ def clean_text(text, separator=", "):
 
 def load_and_clean_data(csv_path: str, sample_size: int = 5000) -> pd.DataFrame:
     """Load *sample_size* rows from the CSV and clean them."""
-    print(f"📂 Loading {sample_size} rows from dataset …")
+    print(f" Loading {sample_size} rows from dataset …")
     df = pd.read_csv(csv_path, nrows=sample_size)
 
     df = df[["title", "ingredients", "directions"]]
     df = df.dropna()
 
-    print("🧹 Cleaning stringified lists …")
+    print(" Cleaning stringified lists …")
     df["ingredients"] = df["ingredients"].apply(lambda x: clean_text(x, separator=", "))
     df["directions"] = df["directions"].apply(lambda x: clean_text(x, separator=" "))
 
-    print(f"✅ {len(df)} recipes cleaned and ready.\n")
+    print(f" {len(df)} recipes cleaned and ready.\n")
     return df
 
 
@@ -52,11 +52,11 @@ def dataframe_to_documents(df: pd.DataFrame) -> list[Document]:
         docs.append(
             Document(page_content=content, metadata={"title": row["title"]})
         )
-    print(f"📄 Created {len(docs)} LangChain documents.\n")
+    print(f" Created {len(docs)} LangChain documents.\n")
     return docs
 
 
-# ── quick standalone test ────────────────────────────────────────────
+# quick standalone test
 if __name__ == "__main__":
     recipe_df = load_and_clean_data("./raw_dataset/RecipeNLG_dataset.csv", sample_size=5000)
     print("Data Preview:")
