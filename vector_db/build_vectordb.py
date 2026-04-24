@@ -13,12 +13,12 @@ import sys
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
-# ── allow imports from project root ──────────────────────────────────
+#  imports from project root
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from data_prep.prepare_data import load_and_clean_data, dataframe_to_documents
 
-# ── paths ────────────────────────────────────────────────────────────
+#  paths
 PERSIST_DIR = os.path.join(os.path.dirname(__file__), "chroma_store")
 CSV_PATH    = os.path.join(os.path.dirname(__file__), "..", "raw_dataset", "RecipeNLG_dataset.csv")
 
@@ -49,7 +49,7 @@ def build_vectordb(force_rebuild: bool = False):
         print(f" Loaded ChromaDB with {vectordb._collection.count()} documents.\n")
         return vectordb
 
-    # ── fresh build ──────────────────────────────────────────────────
+    #  fresh build 
     print("  Building a fresh ChromaDB vector store …\n")
 
     df   = load_and_clean_data(CSV_PATH, sample_size=5000)
@@ -83,7 +83,7 @@ def load_vectordb():
     return build_vectordb(force_rebuild=False)
 
 
-# ── standalone runner ────────────────────────────────────────────────
+# standalone runner
 if __name__ == "__main__":
     import argparse
 
