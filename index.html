@@ -35,7 +35,7 @@
     overflow: hidden;
   }
 
-  /* ── NOISE TEXTURE OVERLAY ─────────────────────────── */
+  /*NOISE TEXTURE OVERLAY  */
   body::before {
     content: '';
     position: fixed;
@@ -46,7 +46,7 @@
     opacity: 0.4;
   }
 
-  /* ── ANIMATED BG BLOBS ─────────────────────────────── */
+  /* ANIMATED BG BLOBS*/
   .blob {
     position: fixed;
     border-radius: 50%;
@@ -66,7 +66,7 @@
     66%       { transform: translate(-20px, 15px) scale(0.97); }
   }
 
-  /* ── LAYOUT ────────────────────────────────────────── */
+  /*  LAYOUT */
   .app {
     position: relative;
     z-index: 1;
@@ -74,7 +74,7 @@
     height: 100vh;
   }
 
-  /* ── SIDEBAR ───────────────────────────────────────── */
+  /* SIDEBAR */
   .sidebar {
     width: var(--sidebar-w);
     min-width: var(--sidebar-w);
@@ -229,7 +229,7 @@
   }
   .btn-clear:active { transform: translateY(0); }
 
-  /* ── MAIN ──────────────────────────────────────────── */
+  /*  MAIN  */
   .main {
     flex: 1;
     display: flex;
@@ -238,7 +238,7 @@
     position: relative;
   }
 
-  /* ── HERO ──────────────────────────────────────────── */
+  /* HERO  */
   .hero {
     text-align: center;
     padding: 36px 20px 20px;
@@ -264,7 +264,7 @@
     font-weight: 300;
   }
 
-  /* ── SUGGESTIONS ───────────────────────────────────── */
+  /*  SUGGESTIONS */
   .suggestions {
     display: flex;
     flex-wrap: wrap;
@@ -312,7 +312,7 @@
     border-radius: 2px;
   }
 
-  /* ── EMPTY STATE ───────────────────────────────────── */
+  /* EMPTY STATE  */
   .empty-state {
     flex: 1;
     display: flex;
@@ -336,7 +336,7 @@
   }
   .empty-state p { font-size: 0.95rem; line-height: 1.6; max-width: 320px; }
 
-  /* ── MESSAGE BUBBLES ───────────────────────────────── */
+  /*  MESSAGE BUBBLES */
   .message {
     display: flex;
     gap: 10px;
@@ -406,7 +406,7 @@
   }
   .bubble.bot p + p { margin-top: 8px; }
 
-  /* ── TYPING INDICATOR ──────────────────────────────── */
+  /*  TYPING INDICATOR */
   .typing {
     display: flex;
     align-items: center;
@@ -432,7 +432,7 @@
     margin-left: 2px;
   }
 
-  /* ── INPUT AREA ────────────────────────────────────── */
+  /* INPUT AREA*/
   .input-area {
     padding: 14px 24px 20px;
     flex-shrink: 0;
@@ -499,7 +499,7 @@
     margin-top: 8px;
   }
 
-  /* ── MOBILE TOGGLE ─────────────────────────────────── */
+  /*  MOBILE TOGGLE*/
   .menu-toggle {
     display: none;
     position: fixed;
@@ -558,7 +558,7 @@
 <div class="sidebar-overlay" id="overlay"></div>
 
 <div class="app">
-  <!-- ── SIDEBAR ──────────────────────────────────────── -->
+  <!--  SIDEBAR-->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <div class="logo-icon">🍳</div>
@@ -601,7 +601,7 @@
     </div>
   </aside>
 
-  <!-- ── MAIN ────────────────────────────────────────── -->
+  <!--  MAIN  -->
   <main class="main">
     <div class="hero">
       <div class="hero-title">Bava's Recipe Bot 🍳</div>
@@ -657,7 +657,7 @@ const menuToggle  = document.getElementById('menuToggle');
 let history = [];
 let isLoading = false;
 
-/* ── Mobile sidebar ─────────────────────────────── */
+/*  Mobile sidebar */
 menuToggle.addEventListener('click', () => {
   sidebar.classList.toggle('open');
   overlay.classList.toggle('open');
@@ -667,13 +667,13 @@ overlay.addEventListener('click', () => {
   overlay.classList.remove('open');
 });
 
-/* ── Auto-resize textarea ──────────────────────── */
+/*  Auto-resize textarea */
 chatInput.addEventListener('input', () => {
   chatInput.style.height = 'auto';
   chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
 });
 
-/* ── Keyboard handling ─────────────────────────── */
+/* Keyboard handling  */
 chatInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
@@ -684,7 +684,7 @@ chatInput.addEventListener('keydown', (e) => {
 sendBtn.addEventListener('click', sendMessage);
 clearBtn.addEventListener('click', clearChat);
 
-/* ── Chips ─────────────────────────────────────── */
+/*  Chips  */
 document.querySelectorAll('.chip').forEach(chip => {
   chip.addEventListener('click', () => {
     chatInput.value = chip.dataset.text;
@@ -694,7 +694,7 @@ document.querySelectorAll('.chip').forEach(chip => {
   });
 });
 
-/* ── Add message bubble ────────────────────────── */
+/*  Add message bubble  */
 function addMessage(role, text) {
   if (emptyState) emptyState.remove();
   suggestions.style.display = 'none';
@@ -718,7 +718,7 @@ function addMessage(role, text) {
   return msg;
 }
 
-/* ── Simple text formatter ──────────────────────── */
+/*  Simple text formatter  */
 function formatText(text) {
   return text
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -732,7 +732,7 @@ function formatText(text) {
     .replace(/^(.+)$/, '<p>$1</p>');
 }
 
-/* ── Typing indicator ───────────────────────────── */
+/* Typing indicator  */
 function addTyping() {
   const msg = document.createElement('div');
   msg.className = 'message bot';
@@ -762,7 +762,7 @@ function removeTyping() {
   if (t) t.remove();
 }
 
-/* ── Send message ────────────────────────────────── */
+/*  Send message  */
 async function sendMessage() {
   const text = chatInput.value.trim();
   if (!text || isLoading) return;
@@ -793,11 +793,7 @@ async function sendMessage() {
   chatInput.focus();
 }
 
-/* ── API call ─────────────────────────────────────
-   Replace this function body with your own backend
-   endpoint call, e.g.:
-     const res = await fetch('/api/recipe', { ... })
-   ──────────────────────────────────────────────── */
+/* ── API call  */
 async function callAPI(userMessage) {
   const GROQ_API_KEY = window.GROQ_API_KEY || '';
   const BACKEND_URL  = window.BACKEND_URL  || '';
@@ -853,7 +849,7 @@ function demoResponse(ingredients) {
   return `**🍽️ Recipe suggestion for: ${ingredients}**\n\nThis is a demo response — to connect your real backend, set \`window.BACKEND_URL\` to your API endpoint, or set \`window.GROQ_API_KEY\` for direct Groq access.\n\n**To configure:**\nAdd a \`<script>\` tag before this file closes:\n\`window.BACKEND_URL = 'http://localhost:8000/chat';\`\n\nOr for Groq direct:\n\`window.GROQ_API_KEY = 'gsk_...your_key...';\``;
 }
 
-/* ── Clear chat ──────────────────────────────────── */
+/* Clear chat*/
 function clearChat() {
   history = [];
   chatArea.innerHTML = `
