@@ -17,15 +17,15 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
-# ── allow imports from project root ──────────────────────────────────
+#  allow imports from project root
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from vector_db.build_vectordb import load_vectordb
 
-# ── load env ─────────────────────────────────────────────────────────
+#  load env 
 load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
-# ── prompt ───────────────────────────────────────────────────────────
+# prompt 
 SYSTEM_PROMPT = """\
 You are ChefBot 🍳 — a friendly, knowledgeable cooking assistant.
 
@@ -92,7 +92,7 @@ def get_rag_chain():
     return chain
 
 
-# ── standalone test ──────────────────────────────────────────────────
+# standalone test 
 if __name__ == "__main__":
     chain = get_rag_chain()
 
